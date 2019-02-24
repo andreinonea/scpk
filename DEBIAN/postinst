@@ -2,4 +2,3 @@
 
 sudo chmod +x /usr/local/bin/scpk
 sudo mandb -q
-sudo echo "scpk installed successfully"
