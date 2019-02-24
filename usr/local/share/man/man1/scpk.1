@@ -1,0 +1,156 @@
+.\" manpage for scpk
+.\" Contact Andrei Onea for bugs or suggestions
+.TH scpk 1 "24 February 2019" "version 1.0.1" "scpk manpage"
+.SH NAME
+scpk - scp wrapper for CS students at University of Manchester
+.SH SYNOPSIS
+.B scpk
+.RI "[" OPTION "] to/from
+.I kilburn
+.I localpath 
+--- copy a file
+.PP
+.B scpk
+changeid --- allow the user to change the student ID associated
+.PP
+.B scpk 
+--- displays simple help menu
+.SH VERSION
+.B 1.3
+.SH DESCRIPTION
+.B scpk
+uses a locally stored configuration file to keep the host required to send or
+retrieve data from the servers in Kilburn. Its only use is to save typing for
+those using Linux that like to keep a copy of their coursework (and what not)
+from their Uni machines to their local machines. It can copy to and from
+Kilburn and it also can transfer folders recursively.
+.SH OPTIONS
+.TP
+.B "-h --help" 
+.RB "Prints a simple help menu that links to this man page."
+.TP
+.B "-r --recursive"
+.RB "Descends in each directory at the target path to copy all files and folders."
+.TP
+.B "-v --verbose"
+.RB "Asks the 'scp' process to produce detailed output (probably never going to use this)."
+.TP
+.B "--version"
+.RB "Prints the current version of the script."
+.SH EXAMPLES
+The following will be used to display the
+.I version
+.PP
+.RS
+.BR $ " scpk --version
+.RE
+.PP
+The following will be used to change the
+.I student id
+required to replace the hostname.
+.PP
+.RS
+.BR $ " scpk changeid
+.RE
+.PP
+The following will be used to copy a file
+.I foo
+from Kilburn to local machine, saved as 
+.I bar.
+.PP
+.RS
+.BR $ " scpk from PATH/TO/FILE/foo LOCAL/PATH/bar 
+.RE
+.PP
+The following will be used to copy a file
+.I foo
+to Kilburn from local machine, saved as 
+.I bar.
+.PP
+.RS
+.BR $ " scpk to PATH/TO/FILE/bar LOCAL/PATH/foo
+.RE
+.PP
+The following will be used to copy, recursively, a file
+.I foo
+from Kilburn to local machine, saved as 
+.I bar.
+.PP
+.RS
+.BR $ " scpk -r from PATH/TO/FILE/foo LOCAL/PATH/bar 
+.RE
+.PP
+The following will be used to copy, verbose, a file
+.I foo
+to Kilburn from local machine, saved as 
+.I bar.
+.PP
+.RS
+.BR $ " scpk -v to PATH/TO/FILE/bar LOCAL/PATH/foo
+.RE
+.PP
+The following will be used to copy, recursively and verbose, a file
+.I foo
+to Kilburn from local machine, saved as 
+.I bar.
+.PP
+.RS
+.BR $ " scpk -r -v to PATH/TO/FILE/bar LOCAL/PATH/foo
+.SH ERRORS
+.TP
+.B IllegalArgument
+.PP
+.RS
+caused by an incorrect syntax use.
+.RE
+.PP
+.B DuplicateArguments
+.PP
+.RS
+caused by two flags being the same.
+.RE
+.PP
+.B NotEnoughArguments
+.PP
+.RS
+caused by remaining an insufficient number of arguments after dealing with flags.
+.RE
+.PP
+.B TooManyArguments
+.PP
+.RS
+caused by remaining too many arguments after dealing with flags.
+.RE
+.PP
+.B Unforeseen event happened
+.PP
+.RS
+caused by an unexpected and unchecked event.
+.SH EXIT STATUS
+.TP
+.B 0
+.RB "If the copy is successful or the script is run for the first time in order
+to generate the config file"
+.TP
+.B 1
+.RB "If any error occurs at any time"
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Andrei Onea
+.SH COPYRIGHT
+MIT License
+.PP
+Copyright (c) 2019 Andrei Onea
+.PP
+This document is part of the scpk software.
+.PP
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+.PP
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
