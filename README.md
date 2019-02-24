@@ -34,7 +34,7 @@ This way, the program is safely installed with the latest version.
 After installing the program, you have to provide your student ID to be used when connecting to Kilburn machines. Fire up a terminal and start the program with
 
 ```
-scpx
+scpk
 ```
 
 and follow the instructions. Whenever sending data, you should supply the file path in Kilburn first, then the one on your local machine. **Note: Kilburn path implicitly starts from "~/".**
