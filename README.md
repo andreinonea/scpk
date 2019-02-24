@@ -25,6 +25,7 @@ chmod +x INSTALL
 ```
 rm INSTALL
 ```
+This way, the program is safely installed with the latest version.
 
 ## Version
 
