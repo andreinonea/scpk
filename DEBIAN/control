@@ -1,0 +1,5 @@
+Package: scpk
+Version: 1.3
+Maintainer: Andrei Onea
+Architecture: all
+Description: simple shell script wrapping scp, to be used by UoM CS Students
