@@ -7,6 +7,3 @@ sudo chmod +x /usr/local/bin/scpk
 sudo echo "Processing triggers for mandb..."
 sudo wget https://raw.githubusercontent.com/andreinonea/scpk/master/usr/local/share/man/man1/scpk.1 -q --output-document=/usr/local/share/man/man1/scpk.1
 sudo mandb -q
-
-sudo echo "scpk installed successfully"
-
