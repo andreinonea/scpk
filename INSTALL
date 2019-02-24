@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo echo "Downloading script..."
-sudo wget https://gist.githubusercontent.com/andreinonea/4fa5632f29355a5a43fcc6eacab590bd/raw/71113cf9c1706d62e38105acd90d7433273e36a9/scpk-1.3 -q --output-document=/usr/local/bin/scpk
+sudo wget https://raw.githubusercontent.com/andreinonea/scpk/master/usr/local/bin/scpk -q --output-document=/usr/local/bin/scpk
 sudo chmod +x /usr/local/bin/scpk
 
 sudo echo "Processing triggers for mandb..."
