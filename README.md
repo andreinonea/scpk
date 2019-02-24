@@ -29,7 +29,9 @@ This way, the program is safely installed with the latest version.
 
 ## Version
 
-Latest version is [1.2](https://github.com/andreinonea/scpk/releases/tag/1.2)
+Latest version is [1.3](https://github.com/andreinonea/scpk/releases/tag/1.3)
+Older versions:
+- [1.2](https://github.com/andreinonea/scpk/releases/tag/1.2)
 
 ## Author
 
