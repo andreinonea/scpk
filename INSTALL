@@ -1,0 +1,14 @@
+#!/bin/bash
+
+sudo echo "Downloading script..."
+sudo wget https://gist.githubusercontent.com/andreinonea/4ada53f72b0a95bc4bd71fa821a897b1/raw/a489609947d9baef843079d766dbfa3d07b6712a/scpk-1.2 -q --output-document=/usr/local/bin/scpk
+sudo chmod +x /usr/local/bin/scpk
+
+sudo echo "Processing triggers for mandb..."
+sudo wget https://gist.githubusercontent.com/andreinonea/a6fed77b15e0602a43c8936e1c1c1554/raw/cf760db7a6179cf0065e76d26e177ddfb03caf84/scpk-1.2-manpage -q --output-document=/usr/local/share/man/man1/scpk.1
+sudo gzip /usr/local/share/man/man1/scpk.1
+sudo rm /usr/local/share/man/man1/scpk.1
+sudo mandb -q
+
+sudo echo "scpk installed successfully"
+
