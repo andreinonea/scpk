@@ -2,7 +2,14 @@
 
 Small shell script that wraps Unix's 'scp' into a nicer way to be used exclusively by Computer Science students at The University of Manchester
 
-## Installing
+## Getting started
+
+### Dependencies
+
+* [scp](https://en.wikipedia.org/wiki/Secure_copy) - original secure copy program, by default installed on Linux machines
+* Linux operating system (for the moment)
+
+### Installing
 
 The debian package can be downloaded from the [releases page](https://github.com/andreinonea/scpk/releases)
 
@@ -27,7 +34,7 @@ rm INSTALL
 ```
 This way, the program is safely installed with the latest version.
 
-## Usage
+### Usage
 
 ###### First run
 
@@ -53,6 +60,14 @@ When copying to Kilburn, use the argument 'to' in the command, followed by the d
 
 ```
 scpk to <kilburn path> <local path>
+```
+
+###### Change student ID
+
+For convenience reasons, a command for changing the University student ID is also provided.
+
+```
+scpk changeid
 ```
 
 ###### Help
