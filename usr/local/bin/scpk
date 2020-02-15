@@ -8,7 +8,7 @@ configPath=~/.scpk_config
 
 
 # Kill the process and send a message to stderr
-die() 
+err() 
 {
   echo -e "$1" >&2
   echo "Run 'scpk --help' for more information"
@@ -116,31 +116,31 @@ elif [ $# -eq 1 ]; then
           setStudentIdThenExit
           ;;
       to | from)
-          die "\e[1mscpk: \e[38;5;191minfo\e[0m: Please provide valid file paths for server and local machine"
+          err "\e[1mscpk: \e[38;5;191minfo\e[0m: Please provide valid file paths for server and local machine"
           ;;
       *)
-          die "\e[1mscpk: \e[38;5;9merror\e[0m:  IllegalArgument caused by: '$1'"
+          err "\e[1mscpk: \e[38;5;9merror\e[0m:  IllegalArgument caused by: '$1'"
   esac
 elif [ $# -eq 2 ]; then
   while ! [ $# -eq 0 ]; do
     case $1 in
         to | from)
-            die "\e[1mscpk: \e[38;5;191minfo\e[0m: Please provide valid file paths for server and local machine"
+            err "\e[1mscpk: \e[38;5;191minfo\e[0m: Please provide valid file paths for server and local machine"
             ;;
         -v | --verbose)
             if [ "$1" == "$2" ]; then
-              die "\e[38;5;28mscpk\e[0m: error: DuplicateArguments caused by: ('$1', '$2')"
+              err "\e[38;5;28mscpk\e[0m: error: DuplicateArguments caused by: ('$1', '$2')"
             fi
             verbose="-v"
             ;;
         -r | --recursive)
             if [ "$1" == "$2" ]; then
-              die "\e[1mscpk: \e[38;5;9merror\e[0m:  DuplicateArguments caused by: ('$1', '$2')"
+              err "\e[1mscpk: \e[38;5;9merror\e[0m:  DuplicateArguments caused by: ('$1', '$2')"
             fi
             recursive="-r"
             ;;
         *)
-            die "\e[1mscpk: \e[38;5;9merror\e[0m:  IllegalArgument caused by: '$1'"
+            err "\e[1mscpk: \e[38;5;9merror\e[0m:  IllegalArgument caused by: '$1'"
     esac
     shift
   done
@@ -152,18 +152,18 @@ elif [ $# -ge 3 ]; then
             ;;
         -v | --verbose)
             if [ "$1" == "$2" ]; then
-              die "\e[1mscpk: \e[38;5;9merror\e[0m:  DuplicateArguments caused by: ('$1', '$2')"
+              err "\e[1mscpk: \e[38;5;9merror\e[0m:  DuplicateArguments caused by: ('$1', '$2')"
             fi
             verbose="-v"
             ;;
         -r | --recursive)
             if [ "$1" == "$2" ]; then
-              die "\e[1mscpk: \e[38;5;9merror\e[0m:  DuplicateArguments caused by: ('$1', '$2')"
+              err "\e[1mscpk: \e[38;5;9merror\e[0m:  DuplicateArguments caused by: ('$1', '$2')"
             fi
             recursive="-r"
             ;;
         *)
-            die "\e[1mscpk: \e[38;5;9merror\e[0m:  IllegalArgument caused by: '$1'"
+            err "\e[1mscpk: \e[38;5;9merror\e[0m:  IllegalArgument caused by: '$1'"
     esac
     shift
   done
@@ -175,28 +175,32 @@ fi
 # Based on the host being the source or the target,
 # generate a string to be used when calling 'scp'
 if [ $# -eq 0 ]; then
-  die "\e[1mscpk: \e[38;5;9merror\e[0m:  NotEnoughArguments"
+  err "\e[1mscpk: \e[38;5;9merror\e[0m:  NotEnoughArguments"
 elif [ $# -eq 1 ]; then
-  die "\e[1mscpk: \e[38;5;191minfo\e[0m: Please provide valid file paths for server and local machine"
+  err "\e[1mscpk: \e[38;5;191minfo\e[0m: Please provide valid file paths for server and local machine"
 elif [ $# -eq 2 ]; then
-  die "\e[1mscpk: \e[38;5;191minfo\e[0m: Please provide valid file path for local machine"
+  err "\e[1mscpk: \e[38;5;191minfo\e[0m: Please provide valid file path for local machine"
 elif [ $# -eq 3 ]; then
   if [ "$1" == "to" ]; then
+    action="sent"
     cmd="$3 $host$2"
   elif [ "$1" == "from" ]; then
+    action="retrieved"
     cmd="$host$2 $3"
   else
-    die "\e[1mscpk: \e[38;5;9merror\e[0m:  Unforeseen event happened"
+    err "\e[1mscpk: \e[38;5;9merror\e[0m:  Unforeseen event happened"
   fi
 else
-  die "\e[1mscpk: \e[38;5;9merror\e[0m:  TooManyArguments"
+  err "\e[1mscpk: \e[38;5;9merror\e[0m:  TooManyArguments"
 fi
 
 
 # Final call
 scp $verbose $recursive $cmd
 if [ $? -eq 0 ]; then
-  echo -e "\e[1mscpk: \e[38;5;2msuccess\e[0m: file(s) retrieved!"
+  echo -e "\e[1mscpk: \e[38;5;2msuccess\e[0m: file(s) $action!"
+else
+	err "\e[1mscpk: \e[38;5;9merror\e[0m: There was a problem with the transfer"
 fi
 
 
